@@ -1,12 +1,15 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import { StyledItem } from './ContactListItem.styled';
 
-export class ContactListItem extends React.Component {
-  render() {
-    return (
-      <li key={nanoid()} name={this.state.name}>
-        {this.state.name}
-      </li>
-    );
-  }
-}
+export const ContactListItem = ({ id, name, number, onDeleteContact }) => {
+  return (
+    <StyledItem>
+      <h3>
+        {name}: {number}
+      </h3>
+      <button type="button" onClick={() => onDeleteContact(id)}>
+        Delete
+      </button>
+    </StyledItem>
+  );
+};

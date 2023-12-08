@@ -7,12 +7,33 @@ import {
 } from './ContactForm.styled';
 
 export class ContactForm extends React.Component {
-  handleFormSubmit = e => {
-    e.preventDefault();
+  state = {
+    name: '',
+    number: '',
   };
 
-  handleInput = e => {
-    console.log(e.currentTarget.value);
+  handleInput = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  };
+
+  handleFormSubmit = e => {
+    e.preventDefault();
+    const { name, number } = this.state;
+
+    const newContact = {
+      id: crypto.randomUUID(),
+      name,
+      number,
+    };
+
+    if (this.props.contacts.some(contact => contact.name === name)) {
+      alert(`Contact with name ${name} already exists!`);
+      return;
+    }
+
+    this.props.handleAddContact(newContact);
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -22,12 +43,23 @@ export class ContactForm extends React.Component {
           Name
           <StyledInput
             onChange={this.handleInput}
-            type="text"
             name="name"
+            type="text"
+            value={this.state.name}
             required
           />
         </StyledLabel>
-        <StyledBtn>Add to contact</StyledBtn>
+        <StyledLabel>
+          Number
+          <StyledInput
+            onChange={this.handleInput}
+            name="number"
+            type="tel"
+            value={this.state.number}
+            required
+          />
+        </StyledLabel>
+        <StyledBtn type="submit">Add to contact</StyledBtn>
       </StyledForm>
     );
   }
