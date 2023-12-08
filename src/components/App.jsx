@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledWrapper } from './App.styled';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -52,7 +53,7 @@ export class App extends React.Component {
           color: '#010101',
         }}
       >
-        <div>
+        <StyledWrapper>
           <h1>Phonebook</h1>
           <ContactForm
             contacts={this.state.contacts}
@@ -67,7 +68,7 @@ export class App extends React.Component {
             contacts={this.getFilteredDate()}
             onDeleteContact={this.deleteContact}
           />
-        </div>
+        </StyledWrapper>
       </div>
     );
   }

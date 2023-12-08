@@ -1,11 +1,12 @@
 import React from 'react';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
+import { StyledWrapper } from './ContactList.Styled';
 
 export class ContactList extends React.Component {
   render() {
     const { contacts, onDeleteContact } = this.props;
     return (
-      <ul>
+      <StyledWrapper>
         {contacts.map(({ id, name, number }) => (
           <ContactListItem
             key={id}
@@ -15,7 +16,7 @@ export class ContactList extends React.Component {
             onDeleteContact={onDeleteContact}
           />
         ))}
-      </ul>
+      </StyledWrapper>
     );
   }
 }

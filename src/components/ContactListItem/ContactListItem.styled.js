@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledItem = styled.li`
-  font-size: 28px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   & button {
     cursor: pointer;
